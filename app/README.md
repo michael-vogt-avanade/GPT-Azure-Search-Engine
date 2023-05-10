@@ -4,6 +4,31 @@ GPT Smart Search
 
 Accurate answers and instant citations from documents in your Azure Data Lake.
 
+---------------------------------------------
+This was edited by Mike Vogt for Mike Vogt
+This uses Cog Search and OpenAI resources SHARED by Mike and Mark to 
+conserve experimentation costs.
+The pages/1_GPT_Smart_Search.py file contains the statements declaring which Indexes are searchable by the web page interface generated and
+served up by Home.py
+
+MIKE - follow theses steps
+1) get into AML (youre already here)
+2) get into Mike's Notebook (youre already here)
+3) open the GPT-Azure-Search-Engine/app README.md file (this one)
+4) launch a terminal from the /app subdir... copy the four (4) export
+statements from this README.md file and paste into the terminal
+4) conda activate envMike311    conda environment to make sure can support the web page interface, else will error
+5) streamlit run Home.py   this will return a URL, BUT, if running from an Azure ML session, MUST use the predefined vanity URL in a browser to reach this web service...
+6) in separate browser, browse to
+https://compute-DS11v2-mcv01-8501.eastus.instances.azureml.ms/
+Select from left menu GPT Smart Search
+NOTE - this will search ALL the indexes specified by the 1_GPT_Smart_Search.py statements... i.e. 
+index1_name = "cogsrch-index-files"
+.
+.
+NOTE - MIKES pages file names indexes MARKS does NOT, so search results
+will be different!!!!  for the Utility industry, Mike and Mark ran Notebook 1 and dumped multiple DATA_SOURCES into one 'codsrch-index-files' index... you will find mikes ASA container content w CDP files, + marks (350) Utility industry service manuals + mixed PDFs from marks ASA container content...
+------------------------------------------
 ## 🔧 Features
 
 - Queries Azure Cognitive Search and uses OpenAI to provide an acurate answer.
@@ -22,6 +47,11 @@ export AZURE_SEARCH_ENDPOINT=<Enter your value>
 export AZURE_SEARCH_KEY=<Enter your value>
 export AZURE_OPENAI_ENDPOINT=<Enter your value>
 export AZURE_OPENAI_API_KEY=<Enter your value>
+
+export AZURE_SEARCH_ENDPOINT="https://azure-cog-search-gtekhenxlqzvu.search.windows.net"
+export AZURE_SEARCH_KEY="EPpDuVjPveOV8hhzKu7e17H0AB7QIzrWGqumQK87uEAzSeB9FqUZ"
+export AZURE_OPENAI_ENDPOINT="https://oai-2023-mondelez-chatgpt-01.openai.azure.com/"
+export AZURE_OPENAI_API_KEY="f86736ea92444e9f836b69de0512ca55"
 ```
 3. Run the Streamlit server🚀
 ```bash
@@ -32,6 +62,12 @@ streamlit run Home.py
 https://{Your-AMLCompute-Name}-{port}.{your-region}.instances.azureml.ms/ 
   
 Example: https://myComputeInstance-8501.southcentralus.instances.azureml.ms/ 
+
+
+
+https://compute-DS11v2-mcv01-8501.eastus.instances.azureml.ms/
+
+
  
 ## To Deploy in Azure Web App Service
 

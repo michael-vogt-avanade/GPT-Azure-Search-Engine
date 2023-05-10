@@ -119,9 +119,12 @@ else:
         else:
             # Azure Search
 
-            index1_name = "cogsrch-index-files"
+            index1_name = "cogsrch-index-files"   # mike and mark finally figger out that by sharing a Cog Search resource, the need UNIQUE names for each index,
+                                                  # else when they re-use a index name all their content gets APPENDED to an index their respective code shares!!!!!!
             index2_name = "cogsrch-index-csv"
-            indexes = [index1_name, index2_name]
+            index3_name = "cogsrch-index-chemistry-files"  # mike EXPLICITLY adds in third, NEW, Index...
+#            indexes = [index1_name, index2_name]
+            indexes = [index1_name, index2_name, index3_name] # mike includes the 3rd index
             agg_search_results = get_search_results(query, indexes)
 
             file_content = OrderedDict()
