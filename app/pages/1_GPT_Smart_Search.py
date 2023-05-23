@@ -63,19 +63,19 @@ st.header("GPT Smart Search Engine")
 with st.sidebar:
     st.markdown("""# Instructions""")
     st.markdown("""
-Ask a question that you think can be answered with the information in about 10k Arxiv Computer Science publications from 2020-2021 or in 52k Medical Covid-19 Publications from 2020.
+Ask a question that you think can be answered with the information in about (350) service manuals, vendor product specifications and brochures, and industry references and trouble shooting guides all serving the Electrical Utility Industry Linemen and Cablemen.
 
 For example:
-- What are markov chains?
-- List the authors that talk about Gradient Boosting Machines
-- How does random forest work?
-- What kind of problems can I solve with reinforcement learning? Give me some real life examples
-- What kind of problems Turing Machines solve?
-- What are the main risk factors for Covid-19?
-- What medicine reduces inflamation in the lungs?
-- Why Covid doesn't affect kids that much compared to adults?
+- What is a resistor?
+- What is reactive power?
+- What is Ohm's Law?
+- What are different types of power line conductors?
+- Explain polarity tests for overhead transformers.
+- Explain typical capacitor maintenance.
+- Who writes [electrical utility] safety rules?
+- Do padmounts have viewing windows?
     
-    \nYou will notice that the answers to these questions are diferent from the open ChatGPT, since these papers are the only possible context. This search engine does not look at the open internet to answer these questions. If the context doesn't contain information, the engine will respond: I don't know.
+    \nYou will notice that the answers are limited, but focused on, the custom-supplied document source. If the context doesn't contain information, the engine will respond: I don't know.
     """)
     st.markdown("""
             - ***Quick Answer***: GPT model only uses, as context, the captions of the results coming from Azure Search
@@ -84,7 +84,7 @@ For example:
 
 coli1, coli2 = st.columns([2,1])
 with coli1:
-    query = st.text_input("Ask a question to your enterprise data lake", value= "What is CLP?", on_change=clear_submit)
+    query = st.text_input("Ask a question to your enterprise data lake", value= "What is a resistor?", on_change=clear_submit)
 with coli2:
     temp = st.slider('Temperature :thermometer:', min_value=0.0, max_value=1.0, step=0.1, value=0.5)
 
@@ -119,12 +119,12 @@ else:
         else:
             # Azure Search
 
-            index1_name = "cogsrch-index-files"   # mike and mark finally figger out that by sharing a Cog Search resource, the need UNIQUE names for each index,
-                                                  # else when they re-use a index name all their content gets APPENDED to an index their respective code shares!!!!!!
-            index2_name = "cogsrch-index-csv"
-            index3_name = "cogsrch-index-chemistry-files"  # mike EXPLICITLY adds in third, NEW, Index...
+            index1_name = "cogsrch-index-files-equipment"   # mike and mark share a Cog Search resource, the need UNIQUE names for each index
+            # else when they re-use a index name all their content gets APPENDED to an index their respective code shares!!!!!!
+            # index2_name = "cogsrch-index-csv"
+            # index3_name = "cogsrch-index-chemistry-files"  # mike EXPLICITLY adds in third, NEW, Index...
 #            indexes = [index1_name, index2_name]
-            indexes = [index1_name, index2_name, index3_name] # mike includes the 3rd index
+            indexes = [index1_name] # util industry focused on single index
             agg_search_results = get_search_results(query, indexes)
 
             file_content = OrderedDict()
